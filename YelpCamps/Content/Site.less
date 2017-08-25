@@ -1,0 +1,74 @@
+﻿body {
+    padding-top: 64px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+// navbar //
+#logoutil {
+    margin: 15px 20px 0px 10px;
+
+    a {
+        color: #777;
+        text-decoration: none;
+
+        &:hover {
+            color: #333;
+            background-color: transparent;
+        }
+    }
+}
+
+// campground index page //
+
+.camps .camp {
+    margin-bottom: 20px;
+
+    img {
+        height: 170px;
+        width: 100%;
+    }
+
+    .caption {
+        padding: 0;
+    }
+
+    a{
+        margin-bottom:10px;
+    }
+}
+
+/* CampGround Detail Page */
+#campgroundDetailPage > div:nth-child(2) .thumbnail {
+    padding: 0;
+
+    img {
+        width: 100%;
+    }
+
+    & > div {
+        padding: 10px;
+
+        .badge {
+            font-size: 1.15em;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    }
+}
+
+// Bootstrap Overrides //
+
+.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
+
+input.input-validation-error {
+    border: 2px solid red;
+}

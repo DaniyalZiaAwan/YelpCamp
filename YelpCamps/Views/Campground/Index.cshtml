@@ -1,0 +1,49 @@
+﻿@model IEnumerable<YelpCamps.Models.Campground>
+@{
+    ViewBag.Title = "Campgrounds";
+}
+
+@if (ViewBag.msg != null)
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="alert alert-info">
+                @ViewBag.msg
+            </h4>
+        </div>
+    </div>
+}
+
+<div class="jumbotron">
+    <div class="container">
+
+        <h1>Welcome To YelpCamp!</h1>
+        <p>View our hand-picked campgrounds from all over the world</p>
+        <a class="btn btn-primary" href="@Url.Action("Create", "Campground")">Add New Campground</a>
+    </div>
+</div>
+
+<div class="row camps">
+
+    @if (Model.Count() > 0)
+    {
+        foreach (var camp in Model)
+        {
+            <div class="col-md-3 col-sm-6 camp">
+                <div class="thumbnail text-center">
+                    <img class="img-responsive" src="@camp.Image" alt="CampGround Image" />
+                    <h4 class="caption"><strong>@camp.Name</strong></h4>
+                    <a class="btn btn-primary" href="@Url.Action("Detail", "Campground", new { id = camp.Id })">
+                        More Info
+                    </a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-warning col-sm-6 col-sm-offset-3 text-center">
+            <strong>No Campgrounds Found !!</strong>
+        </div>
+    }
+</div>

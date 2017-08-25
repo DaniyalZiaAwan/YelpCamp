@@ -1,0 +1,60 @@
+﻿@model YelpCamps.ViewModels.CampDetailVm
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div class="row" id="campgroundDetailPage">
+    <div class="col-sm-3">
+        <p class="lead">YelpCamp</p>
+        <ul class="list-group">
+            <li class="list-group-item active">Info 1</li>
+            <li class="list-group-item">Info 2</li>
+            <li class="list-group-item">Info 3</li>
+        </ul>
+    </div>
+    <div class="col-sm-9">
+        <div class="thumbnail">
+            <img src="@Model.Campground.Image" alt="" class="img-responsive" />
+            <div>
+                <h4 class="pull-right badge">$9.00 / night</h4>
+                <h4><a href="#">@Model.Campground.Name</a></h4>
+                <p>@Model.Campground.Description</p>
+
+                @if (Model.ShowActions && Model.IsAuthorized)
+                {
+                    <a href="@Url.Action("Edit", "Campground", new { id = Model.Campground.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete", "Campground", new { id = Model.Campground.Id })" class="btn btn-danger">Delete</a>
+                }
+
+            </div>
+        </div>
+        <br />
+        <div class="well">
+            <div class="text-right">
+                <a class="btn btn-success" href="@Url.Action("Create", "Comment", new { campId = Model.Campground.Id })">
+                    Leave a Review
+                </a>
+            </div>
+            <hr />
+            @foreach (var comment in Model.Campground.Comments)
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        <strong>@comment.Author.Name</strong>
+                        <span class="pull-right">10 days</span>
+                        <p>
+                            @comment.Text
+                        </p>
+                        @if (comment.Author.Id == User.Identity.GetUserId())
+                        {
+                            <a href="@Url.Action("Edit", "Comment", new { id = comment.Id })" class="btn btn-warning">Edit</a>
+                            <a href="@Url.Action("Delete", "Comment", new { id = comment.Id })" class="btn btn-danger">Delete</a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model YelpCamps.ViewModels.CampgroundFormVm
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h1 class="text-center">Edit @Model.Name</h1>
+
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+        <form method="post">
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(c => c.Name)
+                @Html.TextBoxFor(c => c.Name, new { @class = "form-control", placeholder = "Name" })
+                @Html.ValidationMessageFor(c => c.Name)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(c => c.Image)
+                @Html.TextBoxFor(c => c.Image, new { @class = "form-control", placeholder = "Image" })
+                @Html.ValidationMessageFor(c => c.Image)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(c => c.Description)
+                @Html.TextBoxFor(c => c.Description, new { @class = "form-control", placeholder = "Description" })
+                @Html.ValidationMessageFor(c => c.Description)
+            </div>
+
+            <input type="submit" value="Update" class="btn btn-block btn-primary" />
+            <a class="btn btn-block btn-default" href="@Url.Action("Index","Campground")">
+                Back
+            </a>
+        </form>
+    </div>
+</div>
+

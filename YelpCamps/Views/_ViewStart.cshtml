@@ -1,0 +1,14 @@
+﻿@using YelpCamps.Models;
+@using Microsoft.AspNet.Identity;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (User.Identity.IsAuthenticated)
+    {
+        var myId = User.Identity.GetUserId();
+        var db = new ApplicationDbContext();
+        var me = db.Users.Single(u => u.Id == myId);
+        ViewContext.ViewBag.name = me.Name;
+    }
+}
